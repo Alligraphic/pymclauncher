@@ -1,15 +1,18 @@
+import os
+
 from helper import create_dir
 
-def create_dirs():
+def create_dirs(mc_path):
     dirs = [
-        './run/assets/indexes/',
-        './run/assets/objects/',
-        './run/libraries/',
-        './run/versions/'
+        '/assets/indexes/',
+        '/assets/objects/',
+        '/libraries/',
+        '/versions/',
+        '/versions/instances/',
     ]
     for directory in dirs:
-        create_dir(directory)
+        create_dir(os.path.join(mc_path, directory))
 
 
 if __name__ == "__main__":
-    create_dirs()
+    create_dirs("./run/")

@@ -16,6 +16,7 @@ def choose(options: list[str]) -> int:
         except ValueError:
             pass
 
+
 def ask_yes_no(text: str) -> bool:
     while True:
         answer = input(f"{text}[y/n]:").strip().upper()
@@ -27,10 +28,12 @@ def ask_yes_no(text: str) -> bool:
         else:
             print("Invalid answer. Use y or n.")
 
+
 def download_file(url: str, path: str):
     response = requests.get(url)
     with open(path, "wb") as f:
         f.write(response.content)
+
 
 def download_json(url: str, path: str):
     response = requests.get(url)
@@ -38,6 +41,15 @@ def download_json(url: str, path: str):
     with open(path, "w") as f:
         json.dump(json_data, f, indent=4)
 
+
 def create_dir(path: str):
     if not os.path.exists(path):
         os.makedirs(path)
+
+
+def validate_mc_version(version: str | None, mc_path) -> bool:
+    if version is None:
+        return False
+    else:
+        # return true if the version folder exists
+        return os.path.exists(os.path.join(mc_path, "versions", version))

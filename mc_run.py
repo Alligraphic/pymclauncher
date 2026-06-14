@@ -29,13 +29,18 @@ def run_neo_forge(
         neo_forge_version,
         asset_index,
         mc_path=MC_DIR,
-        instance_path=MC_DIR,
+        instance=MC_DIR,
         username='Player',
         client_token="00000000-0000-0000-0000-000000000000",
         java_path=JAVA_PATH,
         ram=10
 ):
     classpath = build_classpath(mc_version, neo_forge_version, mc_path=mc_path)
+
+    if not instance:
+        instance_path = mc_path
+    else:
+        instance_path = os.path.join(mc_path, "versions", "instances", instance)
 
     # options = {
     #     "username": username,
