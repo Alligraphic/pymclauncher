@@ -105,7 +105,7 @@ def main():
 
     mc_version, neoforge_version, instance = get_mc_version()
 
-    download_libs.download_libs(neoforge_version)
+    # download_libs.download_libs(neoforge_version)
 
     with open(os.path.join(MC_PATH, "versions", mc_version, f"{mc_version}.json"), "r") as f:
         asset_id = json.load(f)["assets"]
