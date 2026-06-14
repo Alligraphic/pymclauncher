@@ -2,6 +2,7 @@ import os
 import json
 
 import update_version_manifest
+import create_user_profile
 import create_dirs
 import download_assets
 import download_libs
@@ -64,6 +65,9 @@ def select_neoforge_version(mc_version):
 
 def main():
     create_dirs.create_dirs()
+
+    username, client_token = create_user_profile.user_profile(MC_PATH)
+
     new_version()
 
     mc_version = select_mc_version()
@@ -79,7 +83,7 @@ def main():
     with open(os.path.join(MC_PATH, "versions", mc_version, f"{mc_version}.json"), "r") as f:
         asset_id = json.load(f)["assets"]
 
-    mc_run.run_neo_forge(mc_version, neoforge_version, asset_id, MC_PATH)
+    mc_run.run_neo_forge(mc_version, neoforge_version, asset_id, MC_PATH, username, client_token)
 
 
 if __name__ == "__main__":

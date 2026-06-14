@@ -30,11 +30,12 @@ def run_neo_forge(
         asset_index,
         mc_path=MC_DIR,
         instance_path=MC_DIR,
+        username='Player',
+        client_token="00000000-0000-0000-0000-000000000000",
         java_path=JAVA_PATH,
         ram=10
 ):
     classpath = build_classpath(mc_version, neo_forge_version, mc_path=mc_path)
-    username = "Alrza"
 
     # options = {
     #     "username": username,
@@ -84,7 +85,7 @@ def run_neo_forge(
         '--gameDir', instance_path,
         '--assetsDir', os.path.join(mc_path, 'assets'),
         '--assetIndex', f'{asset_index}',
-        '--uuid', '5b7dff45-986f-4804-845f-6da9ab3dedc8',
+        '--uuid', client_token,
         '--accessToken', '{token}',
         '--clientId', '${clientid}',
         '--xuid', '${auth_xuid}',
