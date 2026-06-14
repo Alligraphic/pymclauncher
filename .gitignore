@@ -3,3 +3,4 @@
 /.idea/
 /.venv/
 version_manifest.json
+/__pycache__
