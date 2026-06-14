@@ -2,6 +2,7 @@ import os
 import json
 
 import update_version_manifest
+import create_dirs
 import download_assets
 import download_libs
 import mc_run
@@ -62,6 +63,7 @@ def select_neoforge_version(mc_version):
 
 
 def main():
+    create_dirs.create_dirs()
     new_version()
 
     mc_version = select_mc_version()

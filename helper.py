@@ -1,4 +1,6 @@
 import json
+import os
+
 import requests
 
 
@@ -35,3 +37,7 @@ def download_json(url: str, path: str):
     json_data = response.json()
     with open(path, "w") as f:
         json.dump(json_data, f, indent=4)
+
+def create_dir(path: str):
+    if not os.path.exists(path):
+        os.makedirs(path)
