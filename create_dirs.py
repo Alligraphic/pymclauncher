@@ -3,6 +3,7 @@ import os
 from helper import create_dir
 
 def create_dirs(mc_path):
+    create_dir(mc_path)
     dirs = [
         '/assets/indexes/',
         '/assets/objects/',
