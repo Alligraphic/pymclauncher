@@ -16,4 +16,4 @@ def create_dirs(mc_path):
 
 
 if __name__ == "__main__":
-    create_dirs("./run2/")
+    create_dirs("./run/")
