@@ -42,7 +42,7 @@ def download_json(url: str, path: str):
         json.dump(json_data, f, indent=4)
 
 
-def create_dir(path: str):
+def create_dir(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
