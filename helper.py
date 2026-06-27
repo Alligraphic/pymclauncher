@@ -53,3 +53,35 @@ def validate_mc_version(version: str | None, mc_path) -> bool:
     else:
         # return true if the version folder exists
         return os.path.exists(os.path.join(mc_path, "versions", version))
+
+
+def get_game_args(mc_path: str, version: str) -> list[str]:
+    with open(os.path.join(mc_path, "versions", version, f"{version}.json"), "r") as f:
+        data = json.load(f)
+    game_args = data["arguments"]["game"]
+    return game_args
+
+
+def get_jvm_args(mc_path: str, version: str) -> list[str]:
+    with open(os.path.join(mc_path, "versions", version, f"{version}.json"), "r") as f:
+        data = json.load(f)
+    jvm_args = data["arguments"]["jvm"]
+
+    classpath_seperator = ";" # TODO: check for os this works for windows only
+
+    for arg_idx in range(len(jvm_args)):
+        jvm_args[arg_idx] = (
+            jvm_args[arg_idx]
+                .replace("${version_name}", version)
+                .replace("${library_directory}", f"{os.path.join(mc_path, 'libraries')}")
+                .replace("${classpath_separator}", classpath_seperator)
+        )
+
+    return jvm_args
+
+
+def get_main_class(mc_path: str, version: str) -> list[str]:
+    with open(os.path.join(mc_path, "versions", version, f"{version}.json"), "r") as f:
+        data = json.load(f)
+    main_class = data["mainClass"]
+    return [main_class]
