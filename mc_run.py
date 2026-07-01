@@ -56,6 +56,9 @@ def run_neo_forge(
     # for line in command:
     #     print(f'"{line}",')
 
+    if mc_version < "1.20":
+        java_path = "C:\\Program Files\\Java\\jdk-17\\bin\\javaw.exe" # Temporary fix
+
     command = [
         java_path,
         "--show-module-resolution",
@@ -63,16 +66,20 @@ def run_neo_forge(
         # "-XX:+UseZGC",
     ]
 
-    atm_args = [
-        "-XX:+UnlockExperimentalVMOptions",
-        "-XX:+UseG1GC",
-        "-XX:G1NewSizePercent=20",
-        "-XX:G1ReservePercent=20",
-        "-XX:MaxGCPauseMillis=50",
-        "-XX:G1HeapRegionSize=32M",
-        "-XX:+UseStringDeduplication",
-        "-XX:+UseCompactObjectHeaders",
-    ]
+    if "all the mods" in instance.lower():
+        atm_args = [
+            "-XX:+UnlockExperimentalVMOptions",
+            "-XX:+UseG1GC",
+            "-XX:G1NewSizePercent=20",
+            "-XX:G1ReservePercent=20",
+            "-XX:MaxGCPauseMillis=50",
+            "-XX:G1HeapRegionSize=32M",
+            "-XX:+UseStringDeduplication",
+            "-XX:+UseCompactObjectHeaders",
+        ]
+    else:
+        atm_args = []
+
     classpath_arg = [
         '-cp',  # classpath
         classpath,

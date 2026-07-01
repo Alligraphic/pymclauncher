@@ -83,15 +83,12 @@ def get_mc_version() -> tuple[str, str, str | None]:
         modloader = select_neoforge_version(mc_version)
 
     if not helper.validate_mc_version(mc_version, MC_PATH):
-        print("Invalid Minecraft version", mc_version)
+        print(f"Invalid Minecraft version: {mc_version}", mc_version)
         exit(1)
 
     if not helper.validate_mc_version(modloader, MC_PATH):
-        print("Invalid Modloader version")
+        print(f"Invalid Modloader version: {modloader}")
         exit(1)
-
-    if 'neoforge' not in modloader:
-        print("Selected modloader is not neoforge, launching this instance may cause crashes.")
 
     return str(mc_version), str(modloader), instance
 

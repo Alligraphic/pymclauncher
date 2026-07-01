@@ -55,6 +55,14 @@ def validate_mc_version(version: str | None, mc_path) -> bool:
         return os.path.exists(os.path.join(mc_path, "versions", version))
 
 
+def get_expected_modloader_name(modloader: str, mc_version: str) -> str:
+    if modloader.startswith("forge"):
+        modloader = f"{mc_version}-{modloader}"
+
+    return modloader
+
+
+
 def get_game_args(mc_path: str, version: str) -> list[str]:
     with open(os.path.join(mc_path, "versions", version, f"{version}.json"), "r") as f:
         data = json.load(f)

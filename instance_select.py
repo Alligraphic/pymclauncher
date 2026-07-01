@@ -1,6 +1,8 @@
 import json
 import os
 
+import helper
+
 
 def get_instance_list(mc_path):
     mc_path = os.path.join(mc_path, 'versions/instances/')
@@ -17,7 +19,12 @@ def get_instance_version(mc_path, instance_name):
         try:
             with open(os.path.join(instance_path, 'manifest.json'), 'r') as f:
                 data = json.load(f)
-            return data['minecraft']['version'], data['minecraft']['modLoaders'][0]['id']
+            modloader = data['minecraft']['modLoaders'][0]['id']
+            mc_version = data['minecraft']['version']
+
+            modloader = helper.get_expected_modloader_name(modloader, mc_version)
+
+            return mc_version, modloader
         except FileNotFoundError:
             print("manifest.json not found for instance:", instance_name)
 

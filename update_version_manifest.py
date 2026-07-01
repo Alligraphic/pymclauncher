@@ -18,7 +18,7 @@ def download_manifest(mc_path):
 
     with open("version_manifest.json", "r") as f:
         all_versions = json.load(f)["versions"]
-    versions = [v for v in all_versions if v["type"] == "release"][:20]
+    versions = [v for v in all_versions if v["type"] == "release"][:50]
 
     versions_names = [version["id"] for version in versions]
     print("Please select a version to download the manifest for:")
